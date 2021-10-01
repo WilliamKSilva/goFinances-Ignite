@@ -13,16 +13,14 @@ export function HighlightCard() {
     return(
         <Container>
             <Header>
-                <Title>
-                    Entrada
-                </Title>
+                <Title>Entrada</Title>
                 <Icon name="arrow-up-circle" /> 
-
+            </Header>
+                
                 <Footer>
-                    <Amount>3</Amount>
+                    <Amount>21000</Amount>
                     <LastTransaction>R$50000,00</LastTransaction>
                 </Footer>
-            </Header>
         </Container>
     )
 }
