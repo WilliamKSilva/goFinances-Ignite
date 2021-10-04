@@ -25,7 +25,6 @@ export default function App() {
   const toggleTheme = () => {
     setTheme(theme === light ? dark : light);
   }
-
   const [fontLoaded] = useFonts({
     Poppins_400Regular,
     Poppins_500Medium,
