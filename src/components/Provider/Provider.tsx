@@ -14,18 +14,20 @@ import {
 
 import React, { useContext } from 'react';
 
-import { Button } from 'react-native';
-import { light } from '../../global/styles/light';
+
 import { Dashboard } from '../../screens/dashboard';
 import { SwitchContext } from '../../context/SwitchContext';
+import { Register } from '../../screens/Register';
 
 
-export function Teste() {
+
+export function Provider() {
   const { theme, toggleTheme } = useContext(SwitchContext)
+  console.log(theme)
 
   return (
     <ThemeProvider theme={theme}>
-      <Dashboard />
+      <Register />
     </ThemeProvider>
   );
 }

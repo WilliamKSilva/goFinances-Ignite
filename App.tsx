@@ -16,7 +16,9 @@ import { Register } from './src/screens/Register';
 
 
 import { SwitchContextProvider } from './src/context/SwitchContext'
-import { Teste } from './src/components/teste/teste';
+import { Dashboard } from './src/screens/dashboard';
+import { Provider } from './src/components/Provider/Provider';
+
 
 
 export default function App() {
@@ -33,7 +35,7 @@ export default function App() {
   }
   return (
     <SwitchContextProvider>
-        <Register />
+        <Provider />
     </SwitchContextProvider>
         
   );
