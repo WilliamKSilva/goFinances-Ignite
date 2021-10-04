@@ -1,34 +1,40 @@
 import { StatusBar } from 'expo-status-bar';
 import AppLoading from 'expo-app-loading';
-import { ThemeProvider } from 'styled-components';  
+import { ThemeProvider } from 'styled-components';
+
+import React, { useState, useContext } from 'react'
 
 import {
-  useFonts, 
-  Poppins_400Regular, 
-  Poppins_500Medium, 
+  useFonts,
+  Poppins_400Regular,
+  Poppins_500Medium,
   Poppins_700Bold,
 } from '@expo-google-fonts/poppins';
 
-import React from 'react';
+
 import { Register } from './src/screens/Register';
 
-import theme from './src/global/styles/theme';
 
-export default function App() { 
+import { SwitchContextProvider } from './src/context/SwitchContext'
+import { Teste } from './src/components/teste/teste';
+
+
+export default function App() {
+
   const [fontLoaded] = useFonts({
-    Poppins_400Regular, 
-    Poppins_500Medium, 
+    Poppins_400Regular,
+    Poppins_500Medium,
     Poppins_700Bold
 
   });
 
-  if(!fontLoaded){
+  if (!fontLoaded) {
     return <AppLoading />
   }
   return (
-    <ThemeProvider theme={theme}>
+    <SwitchContextProvider>
         <Register />
-    </ThemeProvider>
+    </SwitchContextProvider>
         
   );
 }
