@@ -16,6 +16,7 @@ export const light = {
         text: '#969CB2',
         text_dark: '#000000',
         background: '#F0F2F5',
+        white: '#FFFFFF',
 
     },
 

@@ -16,6 +16,7 @@ export const dark = {
       text: '#F1ECF6',
       text_dark: '#000000',
       background: '#120220',
+      white: '#FFFFFF',
 
   },
 
