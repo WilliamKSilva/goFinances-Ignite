@@ -1,4 +1,4 @@
-import React from 'react'; 
+import React, {useContext} from 'react'; 
 import { Container,
     Header, 
     Title, 
@@ -26,6 +26,7 @@ interface Props {
 
 
 export function HighlightCard({type, title, amount, lastTransaction} : Props) {
+
     return(
         <Container type={type}>
             <Header>

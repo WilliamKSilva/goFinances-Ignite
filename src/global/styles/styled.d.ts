@@ -19,7 +19,7 @@ declare module 'styled-components' {
         text: string,
         text_dark: string,
         background: string,
-
+        white: string,
     },
 
     fonts: {

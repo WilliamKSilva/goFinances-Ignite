@@ -11,20 +11,14 @@ import {
   Poppins_700Bold,
 } from '@expo-google-fonts/poppins';
 
-import React from 'react';
-import { Dashboard } from './src/screens/dashboard';
 
-import { light } from './src/global/styles/light';
-import { dark } from './src/global/styles/dark';
-import { Button } from 'react-native';
+import React, { useContext } from 'react';
+
+import { SwitchContextProvider } from './src/context/SwitchContext'
+import { Teste } from './src/components/teste/teste';
 
 
 export default function App() {
-  const [theme, setTheme] = useState(light);
-
-  const toggleTheme = () => {
-    setTheme(theme === light ? dark : light);
-  }
 
   const [fontLoaded] = useFonts({
     Poppins_400Regular,
@@ -37,11 +31,9 @@ export default function App() {
     return <AppLoading />
   }
   return (
-    <ThemeProvider theme={theme}>
-      <Dashboard />
-      <Button onPress={toggleTheme} title={"BOTAO"}/>
-    </ThemeProvider>
-
+    <SwitchContextProvider>
+      <Teste />
+    </SwitchContextProvider>
   );
 }
 
