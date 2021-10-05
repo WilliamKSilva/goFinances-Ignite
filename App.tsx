@@ -11,12 +11,7 @@ import {
   Poppins_700Bold,
 } from '@expo-google-fonts/poppins';
 
-
-import { Register } from './src/screens/Register';
-
-
 import { SwitchContextProvider } from './src/context/SwitchContext'
-import { Dashboard } from './src/screens/dashboard';
 import { Provider } from './src/components/Provider/Provider';
 
 

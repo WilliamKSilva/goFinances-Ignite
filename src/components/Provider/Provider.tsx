@@ -14,20 +14,22 @@ import {
 
 import React, { useContext } from 'react';
 
-
-import { Dashboard } from '../../screens/dashboard';
-import { SwitchContext } from '../../context/SwitchContext';
 import { Register } from '../../screens/Register';
+import { Dashboard } from '../../screens/dashboard';
+import { CategorySelect } from '../../screens/CategorySelect';
+
+import { SwitchContext } from '../../context/SwitchContext';
+
+
 
 
 
 export function Provider() {
   const { theme, toggleTheme } = useContext(SwitchContext)
-  console.log(theme)
-
+  
   return (
     <ThemeProvider theme={theme}>
-      <Register />
+      <CategorySelect />
     </ThemeProvider>
   );
 }
