@@ -14,9 +14,8 @@ import {
 
 import React, { useContext } from 'react';
 
-import { Register } from '../../screens/Register';
 import { Dashboard } from '../../screens/dashboard';
-import { CategorySelect } from '../../screens/CategorySelect';
+import { Register } from '../../screens/Register';
 
 import { SwitchContext } from '../../context/SwitchContext';
 
@@ -29,7 +28,7 @@ export function Provider() {
   
   return (
     <ThemeProvider theme={theme}>
-      <CategorySelect />
+      <Register />
     </ThemeProvider>
   );
 }

@@ -1,15 +1,40 @@
 import React, { useState } from 'react';
 import {Container, Header, Title, Form, Fields, TransactionTypes} from './styles';
 import { Input } from '../../components/Forms/Input';
+import { InputForm } from '../../components/InputForm';
+import { useForm } from 'react-hook-form';
 import { Button } from '../../components/Forms/Button';
 import { TransactionTypeButton } from '../../components/TransactionTypeButton';
-import { CategorySelect } from '../../components/Forms/CategorySelect';
+import { CategorySelectButton } from '../../components/Forms/CategorySelectButton';
+import { Modal } from 'react-native';
+
+import { CategorySelect } from '../CategorySelect';
 
 export function Register() {
+    const [category, setCategory] = useState({
+        key: 'category', 
+        name: 'Categoria', 
+    });
+
+    const {
+        control, 
+        handleSubmit,
+
+    } = useForm();
+
     const [transactionType, setTransactionType] = useState('');
+    const [categoryModalOpen, setcategoryModalOpen] = useState(false);
     
     function handleTransactionTypeSelect(type: 'up' | 'down') {
         setTransactionType(type);
+    }
+
+    function handleCloseSelectCategoryModal() {
+        setcategoryModalOpen(false);
+    }
+
+    function handleOpenSelectCategoryModal() {
+        setcategoryModalOpen(true);
     }
 
     return(
@@ -20,9 +45,9 @@ export function Register() {
 
             <Form>
                 <Fields>
-                    <Input placeholder="Nome"/>
+                    <InputForm name="name" control={control} placeholder="Nome"/>
 
-                    <Input placeholder="Preço"/>
+                    <InputForm name="amount" control={control} placeholder="Preço"/>
                     <TransactionTypes>
                         <TransactionTypeButton 
                             type="up"
@@ -37,11 +62,20 @@ export function Register() {
                             isActive={transactionType === "down"}
                         />               
                     </TransactionTypes>
-                    <CategorySelect title="Categoria"/>
+                    <CategorySelectButton title={category.name}
+                    onPress={handleOpenSelectCategoryModal}
+                    />
                 </Fields>
 
                 <Button title="Enviar"/>
             </Form>
+            <Modal visible={categoryModalOpen}>
+                <CategorySelect 
+                category={category}
+                setCategory={setCategory}
+                closeSelectCategory={handleCloseSelectCategoryModal}
+                />
+            </Modal>
         </Container>
 
     );
