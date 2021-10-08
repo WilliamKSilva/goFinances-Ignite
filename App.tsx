@@ -14,8 +14,6 @@ import {
 import { SwitchContextProvider } from './src/context/SwitchContext'
 import { Provider } from './src/components/Provider/Provider';
 
-
-
 export default function App() {
 
   const [fontLoaded] = useFonts({

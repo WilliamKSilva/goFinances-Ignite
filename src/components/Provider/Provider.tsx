@@ -14,12 +14,11 @@ import {
 
 import React, { useContext } from 'react';
 
-import { Dashboard } from '../../screens/dashboard';
-import { Register } from '../../screens/Register';
+import { AppRoutes } from '../../routes/app.routes';
 
 import { SwitchContext } from '../../context/SwitchContext';
 
-
+import { NavigationContainer } from '@react-navigation/native'
 
 
 
@@ -28,7 +27,9 @@ export function Provider() {
   
   return (
     <ThemeProvider theme={theme}>
-      <Register />
+      <NavigationContainer>
+        <AppRoutes />
+      </NavigationContainer>
     </ThemeProvider>
   );
 }
