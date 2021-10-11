@@ -12,7 +12,10 @@ import {
 } from '@expo-google-fonts/poppins';
 
 import { SwitchContextProvider } from './src/context/SwitchContext'
+import 'intl';
+import 'intl/locale-data/jsonp/pt-BR';
 import { Provider } from './src/components/Provider/Provider';
+
 
 export default function App() {
 
