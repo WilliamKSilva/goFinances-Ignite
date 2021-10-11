@@ -32,7 +32,6 @@ export function InputForm({
         name={name}
         />
         {error && <Error>{ error }</Error>}
-      
         </Container>
 
     )

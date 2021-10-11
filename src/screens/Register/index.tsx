@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {Container, Header, Title, Form, Fields, TransactionTypes} from './styles';
 import { InputForm } from '../../components/Forms/InputForm';
 
 import { useForm } from 'react-hook-form';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { Button } from '../../components/Forms/Button';
 
@@ -21,12 +22,20 @@ interface FormData {
 }
 
 const schema = Yup.object().shape({
-    name: Yup.string().required("Nome é obrigatório"),
-    amount: Yup.number().typeError('Informe um valor numérico')
+    name: Yup
+    .string()
+    .required('Nome é obrigatório'),
+    amount: Yup
+    .number()
+    .typeError('Informe um valor numérico')
     .positive('O valor não pode ser negativo')
+    .required('Você precisa inserir um valor')
 })
 
 export function Register() {
+    
+    const dataKey = '@gofinances:transactions';
+    
     const [category, setCategory] = useState({
         key: 'category', 
         name: 'Categoria', 
@@ -55,7 +64,7 @@ export function Register() {
         setcategoryModalOpen(true);
     }
 
-    function handleRegister(form: FormData) {
+    async function handleRegister(form: FormData) {
         if(!transactionType)
           return Alert.alert("Selecione o tipo da transação");
 
@@ -68,7 +77,25 @@ export function Register() {
             transactionType, 
             category: category.key
         }
+        
+        try {
+
+          await AsyncStorage.setItem(dataKey, JSON.stringify(data));
+
+        } catch (error) {
+            console.log(error);
+            Alert.alert("Não foi possível salvar");
+        }
     }
+
+    useEffect(() => {
+        async function loadData() {
+           const data = await AsyncStorage.getItem(dataKey);
+           console.log(JSON.parse(data!));
+        } 
+
+        loadData();
+    },[])
 
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -93,7 +120,7 @@ export function Register() {
                         control={control} 
                         placeholder="Preço"
                         keyboardType="numeric"
-                        error={errors.amount && errors.name.amount}
+                        error={errors.amount && errors.amount.message}
                         />
                         <TransactionTypes>
                             <TransactionTypeButton 
@@ -114,7 +141,10 @@ export function Register() {
                         />
                     </Fields>
 
-                    <Button title="Enviar"/>
+                    <Button 
+                    title="Enviar"
+                    onPress={handleSubmit(handleRegister)}
+                    />
                 </Form>
                 <Modal visible={categoryModalOpen}>
                     <CategorySelect 
